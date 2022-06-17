@@ -248,13 +248,26 @@
           </v-row>
         </template>
         
-        <div class="d-flex flex-column ma-4">  
             <v-card outlined class="mt-2">
               <v-card-title >
                  <v-icon color="red darken-1">mdi-dns</v-icon> Absensi Toko Belum Proses
-                <v-flex lg12 md12 sm12>
-                  <v-row dense > 
-                    <v-col class="pa-2" lg="4"> 
+                  <v-flex lg12 md12 sm12>
+                  <v-row dense style="padding-top:56px"> 
+                    <v-col class="pa-2" lg="4" > 
+                      <download-excel
+                                ref="donwloadResultQuery"
+                                class= "button is-primary" 
+                                :data="listrekapbelum" 
+                                worksheet="Data" 
+                                name="AbsensiIris.xls"
+                                >
+                                <v-btn color="secondary"  elevation="10">
+                                  <v-icon color="light-green darken-1">mdi-file-edit</v-icon> 
+                                  XLS
+                                </v-btn>
+                              </download-excel>
+                      </v-col>  
+                    <v-col class="pa-2" lg="4" offset="4">  
                       <v-text-field
                         dense
                         placeholder="Search"
@@ -262,13 +275,16 @@
                         v-model="search2"
                         append-icon="mdi-magnify" single-line hide-details
                       ></v-text-field> 
+                      
                     </v-col>
                   </v-row>
                 </v-flex>
               </v-card-title>
 
               <v-card-text> 
-               <v-layout column style="padding-top:56px">
+               <v-layout >
+                  <v-row dense > 
+                    <v-col class="pa-2" lg="12"> 
                   <v-data-table :class="['word-wrap']" :headers="headers2" :items="listrekapbelum" :search="search2" mobile-breakpoint="0">
                     <template v-slot:[`item.no`]="{ index }">
                       {{ index + 1 }}
@@ -286,13 +302,14 @@
                       Your search for "{{ search2 }}" found no results.
                     </v-alert>
                   </v-data-table> 
+                  </v-col>
+                  </v-row>
+
                 </v-layout> 
               </v-card-text>
               
-            </v-card> 
-        </div>
-        
-        <div class="d-flex flex-column ma-4">  
+            </v-card>  
+         
             <v-card outlined class="mt-2">
               <v-card-title >
                  <v-icon color="red darken-1">mdi-dns</v-icon> Absensi Toko Sales (DT) Belum Proses
@@ -329,10 +346,8 @@
                 </v-layout> 
               </v-card-text>
               
-            </v-card> 
-        </div>
-
-        <div class="d-flex flex-column ma-4">  
+            </v-card>  
+ 
             <v-card outlined class="mt-2">
               <v-card-title >
                 <v-icon color="orange darken-2">mdi-dns</v-icon> Absensi File Belum Proses 
@@ -362,14 +377,27 @@
               </v-card-text>
               
             </v-card> 
-        </div> 
-        <div class="d-flex flex-column ma-4">  
+         
+
             <v-card outlined class="mt-2">
               <v-card-title > <v-icon color="light-green darken-1">mdi-dns</v-icon> Absensi All Toko
                 <v-flex lg12 md12 sm12>
-                  <v-row dense > 
-                    
-                    <v-col class="pa-2" lg="4"> 
+                  <v-row dense style="padding-top:56px"> 
+                      <v-col class="pa-2" lg="4"> 
+                      <download-excel
+                                ref="donwloadResultQuery"
+                                class= "button is-primary" 
+                                :data="listdata" 
+                                worksheet="Data" 
+                                name="AbsensiIris.xls"
+                                >
+                                <v-btn color="secondary"  elevation="10">
+                                  <v-icon color="light-green darken-1">mdi-file-edit</v-icon> 
+                                  XLS
+                                </v-btn>
+                              </download-excel>
+                              </v-col> 
+                    <v-col class="pa-2" lg="4" offset="4">
                       <v-text-field
                         dense
                         placeholder="Search"
@@ -383,20 +411,8 @@
               </v-card-title>
 
               <v-card-text> 
-               <v-layout column>
-               
-                 <download-excel
-                                ref="donwloadResultQuery"
-                                class= "button is-primary" 
-                                :data="listdata" 
-                                worksheet="Data" 
-                                name="AbsensiIris.xls"
-                                >
-                                <v-btn color="secondary"  elevation="10">
-                                  <v-icon color="light-green darken-1">mdi-file-edit</v-icon> 
-                                  XLS
-                                </v-btn>
-                              </download-excel>
+               <v-layout > 
+                 <v-col class="pa-2" lg="12"> 
                   <v-data-table :class="['word-wrap']" :headers="headers" :items="listdata" :search="search" mobile-breakpoint="0">
                     <template v-slot:[`item.no`]="{ index }">
                       {{ index + 1 }}
@@ -410,11 +426,11 @@
                       Your search for "{{ search }}" found no results.
                     </v-alert>
                   </v-data-table> 
+                </v-col>
                 </v-layout> 
               </v-card-text>
               
             </v-card> 
-        </div>
 
         <v-dialog v-model="dialogEditFlagToko" max-width="640">
           <v-card>
@@ -443,7 +459,7 @@
               </v-data-table> 
             </v-card-text>
             <v-card-actions>
-              <v-btn color="teal accent-4" text @click="dialogTokoLR = false ">Close</v-btn> 
+              <v-btn color="orange deep-2" @click="dialogTokoLR = false ">Close</v-btn> 
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -459,7 +475,7 @@
               </v-data-table> 
             </v-card-text>
             <v-card-actions>
-              <v-btn color="teal accent-4" text @click="dialogTokoTS = false ">Close</v-btn> 
+              <v-btn color="orange deep-2" @click="dialogTokoTS = false ">Close</v-btn> 
             </v-card-actions>
           </v-card>
         </v-dialog>
