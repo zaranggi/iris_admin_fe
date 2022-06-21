@@ -138,6 +138,7 @@ export default {
           { id: 'IRIS',value: 'IRIS'}, 
           { id: 'WRC',value: 'WRC'},
           { id: 'PBRO',value: 'PBRO'},
+          { id: 'FTP NPP',value: 'NPP'}
         ],      
   }),
   created: function(){
