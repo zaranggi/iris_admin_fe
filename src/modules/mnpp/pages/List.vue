@@ -9,7 +9,15 @@
               <v-card-title >
                 <v-flex lg12 md12 sm12>
                   <v-row dense > 
-                    <v-col class="pa-2" lg="4"> 
+                    <v-col lg="4"> 
+                      <v-btn color="deep-purple lighten-5" 
+                        depressed
+                        elevation="2"
+                        rounded @click="loadItems()">
+                        <v-icon>mdi-refresh</v-icon> Refresh
+                      </v-btn>
+                    </v-col> 
+                    <v-col lg="4" offset="4"> 
                       <v-text-field
                         dense
                         placeholder="Search"
